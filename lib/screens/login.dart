@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'home.dart';
 
 class LoginPage extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() => new _State();
 }
@@ -29,10 +28,8 @@ class _State extends State<LoginPage> {
                           fontSize: 50),
                     )),
                 Container(
-                    child: Image.asset(
-                      'assets/zinwa_logo.png',
-                      height: 260.0,
-                      width: 260.0)),
+                    child: Image.asset('assets/zinwa_logo.png',
+                        height: 260.0, width: 260.0)),
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
@@ -55,7 +52,7 @@ class _State extends State<LoginPage> {
                   ),
                 ),
                 FlatButton(
-                  onPressed: (){
+                  onPressed: () {
                     //forgot password screen
                   },
                   textColor: Colors.blue,
@@ -71,25 +68,29 @@ class _State extends State<LoginPage> {
                       onPressed: () {
                         print(nameController.text);
                         print(passwordController.text);
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return Dashboard();
+                        }));
                       },
                     )),
                 Container(
                     child: Row(
-                      children: <Widget>[
-                        Text('Does not have account?'),
-                        FlatButton(
-                          textColor: Colors.blue,
-                          child: Text(
-                            'Request',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            //signup screen
-                          },
-                        )
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ))
+                  children: <Widget>[
+                    Text('Does not have account?'),
+                    FlatButton(
+                      textColor: Colors.blue,
+                      child: Text(
+                        'Request',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        //signup screen
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ))
               ],
             )));
   }
