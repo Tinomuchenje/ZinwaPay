@@ -20,36 +20,17 @@ class _State extends State<LoginPage> {
                 Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Zinwa Pay',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 50),
-                    )),
+                    child: name()),
                 Container(
                     child: Image.asset('assets/zinwa_logo.png',
                         height: 260.0, width: 260.0)),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Meter Number',
-                    ),
-                  ),
+                  child: meterNumberInput(),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextField(
-                    obscureText: true,
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                    ),
-                  ),
+                  child: passwordInput(),
                 ),
                 FlatButton(
                   onPressed: () {
@@ -61,19 +42,7 @@ class _State extends State<LoginPage> {
                 Container(
                     height: 50,
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: RaisedButton(
-                      textColor: Colors.white,
-                      color: Colors.blue,
-                      child: Text('Login'),
-                      onPressed: () {
-                        print(nameController.text);
-                        print(passwordController.text);
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return Dashboard();
-                        }));
-                      },
-                    )),
+                    child: loginButton(context)),
                 Container(
                     child: Row(
                   children: <Widget>[
@@ -93,5 +62,52 @@ class _State extends State<LoginPage> {
                 ))
               ],
             )));
+  }
+
+  RaisedButton loginButton(BuildContext context) {
+    return RaisedButton(
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    child: Text('Login'),
+                    onPressed: () {
+                      print(nameController.text);
+                      print(passwordController.text);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Dashboard();
+                      }));
+                    },
+                  );
+  }
+
+  TextField passwordInput() {
+    return TextField(
+                  obscureText: true,
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                  ),
+                );
+  }
+
+  TextField meterNumberInput() {
+    return  TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Meter Number',
+                  ),
+                );
+  }
+
+  Text name() {
+    return Text(
+                    'Zinwa Pay',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 50),
+                  );
   }
 }

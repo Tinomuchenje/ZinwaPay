@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -40,17 +41,21 @@ class _State extends State<Dashboard> {
                 ),
                 Container(
                     height: 50,
-                    child: RaisedButton(
-                        textColor: Colors.white,
-                        color: Colors.blue,
-                        child: Text('Pay Now',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500, 
-                                fontSize: 28)),
-                        onPressed: () {
-                          print("Payment");
-                        })),
+                    child: payNow()),
               ],
             )));
+  }
+
+  RaisedButton payNow() {
+    return RaisedButton(
+                      textColor: Colors.white,
+                      color: Colors.blue,
+                      child: Text('Pay Now',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, 
+                              fontSize: 28)),
+                      onPressed: () {
+                        print("Payment");
+                      });
   }
 }
