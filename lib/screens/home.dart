@@ -27,35 +27,44 @@ class _State extends State<Dashboard> {
                   height: 30.0,
                 ),
                 SizedBox(
-                    height: 300.0,
-                    width: 230.0,
-                    child: CircularProgressIndicator(
-                      value: 0.1,
-                      strokeWidth: 30.0,
-                      backgroundColor: Colors.white,
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(Colors.blueAccent),
-                    )),
+                    height: 300.0, width: 230.0, child: paymentProgressBar()),
                 SizedBox(
                   height: 50.0,
                 ),
-                Container(
-                    height: 50,
-                    child: payNow()),
+                Container(height: 50, child: payNow()),
               ],
             )));
   }
 
+  SleekCircularSlider paymentProgressBar() {
+    var amountDue = 1300;
+
+    return SleekCircularSlider(
+        appearance: CircularSliderAppearance(
+            infoProperties: InfoProperties(
+                bottomLabelText: "Amount Due",
+                bottomLabelStyle: TextStyle(color: Colors.red),
+                modifier: (double value) {
+                  final amountDue = value.ceilToDouble();
+                  return '\$ $amountDue';
+                }),
+            customWidths:
+                CustomSliderWidths(progressBarWidth: 10.0, trackWidth: 10.0),
+            customColors: CustomSliderColors(
+                progressBarColor: Colors.blue, trackColor: Colors.grey)),
+        min: 0,
+        max: 2000,
+        initialValue: amountDue.toDouble());
+  }
+
   RaisedButton payNow() {
     return RaisedButton(
-                      textColor: Colors.white,
-                      color: Colors.blue,
-                      child: Text('Pay Now',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, 
-                              fontSize: 28)),
-                      onPressed: () {
-                        print("Payment");
-                      });
+        textColor: Colors.white,
+        color: Colors.blue,
+        child: Text('Pay Now',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)),
+        onPressed: () {
+          print("Payment");
+        });
   }
 }
