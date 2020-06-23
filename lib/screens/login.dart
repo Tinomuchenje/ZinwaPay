@@ -9,105 +9,116 @@ class LoginPage extends StatefulWidget {
 class _State extends State<LoginPage> {
   var nameController = TextEditingController();
   var passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-            padding: EdgeInsets.all(10),
-            child: ListView(
-              children: <Widget>[
-                Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: name()),
-                Container(
-                    child: Image.asset('assets/zinwa_logo.png',
-                        height: 260.0, width: 260.0)),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: meterNumberInput(),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: passwordInput(),
-                ),
-                FlatButton(
-                  onPressed: () {
-                    //forgot password screen
-                  },
-                  textColor: Colors.blue,
-                  child: Text('Forgot Password'),
-                ),
-                Container(
-                    height: 50,
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: loginButton(context)),
-                Container(
-                    child: Row(
+        body: Form(
+            key: _formKey,
+            child: Padding(
+                padding: EdgeInsets.all(30),
+                child: ListView(
                   children: <Widget>[
-                    Text('Does not have account?'),
+                    Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(10),
+                        child: name()),
+                    Container(
+                        child: Image.asset('assets/zinwa_logo.png',
+                            height: 260.0, width: 260.0)),
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      child: meterNumberInput(),
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                      child: passwordInput(),
+                    ),
                     FlatButton(
-                      textColor: Colors.blue,
-                      child: Text(
-                        'Request',
-                        style: TextStyle(fontSize: 20),
-                      ),
                       onPressed: () {
-                        //signup screen
+                        //forgot password screen
                       },
-                    )
+                      textColor: Colors.blue,
+                      child: Text('Forgot Password'),
+                    ),
+                    Container(
+                        height: 50,
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: loginButton(context)),
+                    Container(
+                        child: Row(
+                      children: <Widget>[
+                        Text('Does not have account?'),
+                        FlatButton(
+                          textColor: Colors.blue,
+                          child: Text(
+                            'Request',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          onPressed: () {
+                            //signup screen
+                          },
+                        )
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    ))
                   ],
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ))
-              ],
-            )));
+                ))));
   }
 
   RaisedButton loginButton(BuildContext context) {
     return RaisedButton(
-                    textColor: Colors.white,
-                    color: Colors.blue,
-                    child: Text('Login'),
-                    onPressed: () {
-                      print(nameController.text);
-                      print(passwordController.text);
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Dashboard();
-                      }));
-                    },
-                  );
+      textColor: Colors.white,
+      color: Colors.blue,
+      child: Text('Login'),
+      onPressed: () {
+
+        if (_formKey.currentState.validate())
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return Dashboard();
+          }));
+      },
+    );
   }
 
-  TextField passwordInput() {
-    return TextField(
-                  obscureText: true,
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                  ),
-                );
+  TextFormField passwordInput() {
+    return TextFormField(
+      obscureText: true,
+      controller: passwordController,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: 'Password',
+      ),
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Please enter password';
+        }
+        return null;
+      },
+    );
   }
 
-  TextField meterNumberInput() {
-    return  TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Meter Number',
-                  ),
-                );
+  TextFormField meterNumberInput() {
+    return TextFormField(
+        controller: nameController,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Meter Number',
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Please enter meter number';
+          }
+          return null;
+        });
   }
 
   Text name() {
     return Text(
-                    'Zinwa Pay',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 50),
-                  );
+      'Zinwa Pay',
+      style: TextStyle(
+          color: Colors.blue, fontWeight: FontWeight.w500, fontSize: 50),
+    );
   }
 }
