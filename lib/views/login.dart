@@ -82,7 +82,7 @@ class _State extends State<LoginPage> {
   }
 
   login() async {
-    var response = await APIServices().login(nameController, passwordController);
+    var response = await APIServices().login(nameController.text, passwordController.text);
   
     if (response.statusCode == 200)
      {

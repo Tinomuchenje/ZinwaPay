@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
@@ -11,7 +10,11 @@ class APIServices {
     return await http.get(accountInformationUrl);
   }
 
-  Future<http.Response> login(TextEditingController meterNumber, TextEditingController password) async{
-    return await http.post(loginUrl);
+  Future<http.Response> login(String meterNumber, String password) async{
+    var data = {
+      'meter_number': meterNumber,
+      'password': password
+    };
+    return await http.post(loginUrl, body: data);
   }
 }
