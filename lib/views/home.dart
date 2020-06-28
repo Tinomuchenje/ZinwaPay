@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'package:zinwa_pay/models/account_data.dart';
+import 'package:zinwa_pay/networking/api.service.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -7,6 +10,14 @@ class Dashboard extends StatefulWidget {
 }
 
 class _State extends State<Dashboard> {
+  var accountInformation;
+
+  @override
+  void initState() {
+    super.initState();
+    accountInformation = getAccountInformation();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +37,7 @@ class _State extends State<Dashboard> {
                 SizedBox(
                   height: 30.0,
                 ),
-                SizedBox(
-                    height: 300.0, width: 230.0, child: paymentProgressBar()),
+                SizedBox(height: 300.0, width: 230.0, child: accontBalance()),
                 SizedBox(
                   height: 50.0,
                 ),
@@ -36,10 +46,10 @@ class _State extends State<Dashboard> {
             )));
   }
 
-  SleekCircularSlider paymentProgressBar() {
-    var amountDue = 1300;
+  SleekCircularSlider paymentProgressBar(dynamic accountInfomation) {
+    var balance = accountInfomation[1]['balance'];
 
-    return SleekCircularSlider(
+    var circularProgress = SleekCircularSlider(
         appearance: CircularSliderAppearance(
             infoProperties: InfoProperties(
                 bottomLabelText: "Amount Due",
@@ -54,7 +64,27 @@ class _State extends State<Dashboard> {
                 progressBarColor: Colors.blue, trackColor: Colors.grey)),
         min: 0,
         max: 2000,
-        initialValue: amountDue.toDouble());
+        initialValue: balance.toDouble());
+
+    return circularProgress;
+  }
+
+  FutureBuilder accontBalance() {
+    return FutureBuilder(
+        future: accountInformation,
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              return Text('None');
+            case ConnectionState.active:
+            case ConnectionState.waiting:
+              return Text('Waiting or active');
+            case ConnectionState.done:
+              return paymentProgressBar(accountInformation);
+            default:
+              return Text('Please reload');
+          }
+        });
   }
 
   RaisedButton payNow() {
@@ -64,7 +94,18 @@ class _State extends State<Dashboard> {
         child: Text('Pay Now',
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)),
         onPressed: () {
-          print("Payment");
+          print('exceute payment');
         });
+  }
+
+  getAccountInformation() async {
+    // var someting = {"1":{"id":1,"meter_number":"abc12345678","password":"mypassword","balance":"5600","role":"customer"}};
+    final response = await APIServices().retrieveAccountInformation();
+
+    if (response.statusCode == 200) {
+      return AccountInformation.fromJson(json.decode(response.body));
+    } else {
+      print('fail popup');
+    }
   }
 }
