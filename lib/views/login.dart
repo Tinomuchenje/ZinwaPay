@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zinwa_pay/networking/api.service.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -73,13 +74,27 @@ class _State extends State<LoginPage> {
       color: Colors.blue,
       child: Text('Login'),
       onPressed: () {
-
-        if (_formKey.currentState.validate())
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return Dashboard();
-          }));
+        if (_formKey.currentState.validate()) {
+          login();
+        }
       },
     );
+  }
+
+  login() async {
+    var response = await APIServices().login(nameController, passwordController);
+  
+    if (response.statusCode == 200)
+     {
+       print('Success popup here');
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return Dashboard();
+      }));
+    }
+     else {
+       print('Fail popup here, Check');
+      return Text('Login Failed');
+    }
   }
 
   TextFormField passwordInput() {
