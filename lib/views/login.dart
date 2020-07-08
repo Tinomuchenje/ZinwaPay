@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:zinwa_pay/models/account_data.dart';
 import 'package:zinwa_pay/networking/api.service.dart';
 import 'home.dart';
+import 'package:status_alert/status_alert.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,13 +25,8 @@ class _State extends State<LoginPage> {
                 padding: EdgeInsets.all(30),
                 child: ListView(
                   children: <Widget>[
-                    Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(10),
-                        child: name()),
-                    Container(
-                        child: Image.asset('assets/zinwa_logo.png',
-                            height: 260.0, width: 260.0)),
+                    Container(alignment: Alignment.center, padding: EdgeInsets.all(10), child: name()),
+                    Container(child: Image.asset('assets/zinwa_logo.png', height: 260.0, width: 260.0)),
                     Container(
                       padding: EdgeInsets.all(10),
                       child: meterNumberInput(),
@@ -43,10 +42,7 @@ class _State extends State<LoginPage> {
                       textColor: Colors.blue,
                       child: Text('Forgot Password'),
                     ),
-                    Container(
-                        height: 50,
-                        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: loginButton(context)),
+                    Container(height: 50, padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: loginButton(context)),
                     Container(
                         child: Row(
                       children: <Widget>[
@@ -83,17 +79,35 @@ class _State extends State<LoginPage> {
 
   login() async {
     var response = await APIServices().login(nameController.text, passwordController.text);
-  
-    if (response.statusCode == 200)
-     {
-       print('Success popup here');
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return Dashboard();
-      }));
-    }
-     else {
-       print('Fail popup here, Check');
-      return Text('Login Failed');
+
+    if (response.statusCode == 200) {
+      var accountInformation = AccountInformation.fromJson(json.decode(response.body));
+
+      if (accountInformation.status == "OK") {
+
+        StatusAlert.show(
+          context,
+          duration: Duration(seconds: 3),
+          title: 'Login',
+          subtitle: accountInformation.message,
+          configuration: IconConfiguration(icon: Icons.done),
+        );
+
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return Dashboard();
+        }));
+      } else {
+
+        return StatusAlert.show(
+          context,
+          duration: Duration(seconds: 3),
+          title: 'Login Failed',
+          subtitle: accountInformation.message,
+          configuration: IconConfiguration(icon: Icons.cancel),
+        );
+      }
+    } else {
+      throw Exception('Failed to connect');
     }
   }
 
@@ -132,8 +146,7 @@ class _State extends State<LoginPage> {
   Text name() {
     return Text(
       'Zinwa Pay',
-      style: TextStyle(
-          color: Colors.blue, fontWeight: FontWeight.w500, fontSize: 50),
+      style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500, fontSize: 50),
     );
   }
 }

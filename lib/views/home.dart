@@ -4,6 +4,7 @@ import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:zinwa_pay/models/account_data.dart';
 import 'package:zinwa_pay/networking/api.service.dart';
 
+
 class Dashboard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _State();
@@ -47,7 +48,7 @@ class _State extends State<Dashboard> {
   }
 
   SleekCircularSlider paymentProgressBar(dynamic accountInfomation) {
-    var balance = accountInfomation[1]['balance'];
+    var balance = 120.0;
 
     var circularProgress = SleekCircularSlider(
         appearance: CircularSliderAppearance(
