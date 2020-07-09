@@ -19,18 +19,25 @@ class _State extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Sign In'),
-          centerTitle: true
-        ),
+        appBar: AppBar(title: Text('Sign In'), centerTitle: true),
         body: Form(
             key: _formKey,
             child: Padding(
                 padding: EdgeInsets.all(30),
                 child: ListView(
                   children: <Widget>[
-                    Container(alignment: Alignment.center, padding: EdgeInsets.all(10), child: name()),
-                    Container(child: Image.asset('assets/zinwa_logo.png', height: 260.0, width: 260.0)),
+                    Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(10),
+                      child: name(),
+                    ),
+                    Container(
+                      child: Image.asset(
+                        'assets/zinwa_logo.png',
+                        height: 260.0,
+                        width: 260.0,
+                      ),
+                    ),
                     Container(
                       padding: EdgeInsets.all(10),
                       child: meterNumberInput(),
@@ -46,7 +53,11 @@ class _State extends State<LoginPage> {
                       textColor: Colors.blue,
                       child: Text('Forgot Password'),
                     ),
-                    Container(height: 50, padding: EdgeInsets.fromLTRB(10, 0, 10, 0), child: loginButton(context)),
+                    Container(
+                      height: 50,
+                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: loginButton(context),
+                    ),
                     Container(
                         child: Row(
                       children: <Widget>[
