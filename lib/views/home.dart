@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:zinwa_pay/models/account_data.dart';
 import 'package:zinwa_pay/networking/api.service.dart';
+import 'package:zinwa_pay/views/payment.dart';
 
 
 class Dashboard extends StatefulWidget {
@@ -22,6 +23,7 @@ class _State extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(title: Text('Home')),
         body: Padding(
             padding: EdgeInsets.all(40.0),
             child: ListView(
@@ -29,7 +31,7 @@ class _State extends State<Dashboard> {
                 Container(
                     alignment: Alignment.center,
                     child: Text(
-                      'DashBoard',
+                      'Dashboard',
                       style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.w500,
@@ -95,7 +97,9 @@ class _State extends State<Dashboard> {
         child: Text('Pay Now',
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)),
         onPressed: () {
-          print('exceute payment');
+           Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return Payment();
+        }));
         });
   }
 

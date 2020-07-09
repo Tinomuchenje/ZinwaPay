@@ -14,7 +14,7 @@ class AccountInformation{
       status: json['status'],
       message: json['message'],
       meterNumber: json['meter_number'],
-      balance: json['balance'],
+      balance: json['balance'] != null ? double.parse(json['balance']) : 0,
       role: json['role']
     );
   }
