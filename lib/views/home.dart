@@ -5,7 +5,6 @@ import 'package:zinwa_pay/models/account_data.dart';
 import 'package:zinwa_pay/networking/api.service.dart';
 import 'package:zinwa_pay/views/payment.dart';
 
-
 class Dashboard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _State();
@@ -23,7 +22,10 @@ class _State extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(title: Text('Home')),
+        appBar: AppBar(
+          title: Text('Home'),
+          centerTitle: true,
+        ),
         body: Padding(
             padding: EdgeInsets.all(40.0),
             child: ListView(
@@ -32,10 +34,7 @@ class _State extends State<Dashboard> {
                     alignment: Alignment.center,
                     child: Text(
                       'Dashboard',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 50),
+                      style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500, fontSize: 50),
                     )),
                 SizedBox(
                   height: 30.0,
@@ -61,10 +60,8 @@ class _State extends State<Dashboard> {
                   final amountDue = value.ceilToDouble();
                   return '\$ $amountDue';
                 }),
-            customWidths:
-                CustomSliderWidths(progressBarWidth: 10.0, trackWidth: 10.0),
-            customColors: CustomSliderColors(
-                progressBarColor: Colors.blue, trackColor: Colors.grey)),
+            customWidths: CustomSliderWidths(progressBarWidth: 10.0, trackWidth: 10.0),
+            customColors: CustomSliderColors(progressBarColor: Colors.blue, trackColor: Colors.grey)),
         min: 0,
         max: 2000,
         initialValue: balance.toDouble());
@@ -94,12 +91,11 @@ class _State extends State<Dashboard> {
     return RaisedButton(
         textColor: Colors.white,
         color: Colors.blue,
-        child: Text('Pay Now',
-            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)),
+        child: Text('Pay Now', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 28)),
         onPressed: () {
-           Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Payment();
-        }));
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return Payment();
+          }));
         });
   }
 

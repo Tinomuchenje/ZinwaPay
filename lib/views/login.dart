@@ -19,7 +19,10 @@ class _State extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(title: Text('Login')),
+        appBar: AppBar(
+          title: Text('Sign In'),
+          centerTitle: true
+        ),
         body: Form(
             key: _formKey,
             child: Padding(
@@ -85,7 +88,6 @@ class _State extends State<LoginPage> {
       var accountInformation = AccountInformation.fromJson(json.decode(response.body));
 
       if (accountInformation.status == "OK") {
-
         StatusAlert.show(
           context,
           duration: Duration(seconds: 3),
@@ -98,7 +100,6 @@ class _State extends State<LoginPage> {
           return Dashboard();
         }));
       } else {
-
         return StatusAlert.show(
           context,
           duration: Duration(seconds: 3),
