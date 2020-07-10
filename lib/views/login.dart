@@ -107,9 +107,15 @@ class _State extends State<LoginPage> {
           configuration: IconConfiguration(icon: Icons.done),
         );
 
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Dashboard();
-        }));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Dashboard(),
+            settings: RouteSettings(
+              arguments: accountInformation
+            ),
+          ),
+        );
       } else {
         return StatusAlert.show(
           context,
