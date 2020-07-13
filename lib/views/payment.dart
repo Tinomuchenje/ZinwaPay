@@ -19,7 +19,7 @@ class _State extends State<Payment> {
         centerTitle: true,
       ),
       body: WebView(
-        initialUrl: "https:www.youtube.com",
+        initialUrl: "https://clicka-utenge.co.zw/zinwa/main/app/makepayment.php",
         javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (WebViewController webviewController) {
           _controller.complete(webviewController);

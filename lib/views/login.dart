@@ -23,7 +23,7 @@ class _State extends State<LoginPage> {
         body: Form(
             key: _formKey,
             child: Padding(
-                padding: EdgeInsets.all(30),
+                padding: EdgeInsets.all(20),
                 child: ListView(
                   children: <Widget>[
                     Container(
@@ -33,10 +33,11 @@ class _State extends State<LoginPage> {
                     ),
                     Container(
                       child: Image.asset(
-                        'assets/zinwa_logo.png',
-                        height: 260.0,
-                        width: 260.0,
+                        'assets/zinwa_medium.png',
+                        height: 200.0,
+                        width: 200.0,
                       ),
+                      padding: EdgeInsets.all(20),
                     ),
                     Container(
                       padding: EdgeInsets.all(10),
