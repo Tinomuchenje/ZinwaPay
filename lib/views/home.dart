@@ -36,17 +36,38 @@ class _State extends State<Dashboard> {
                   height: 30.0,
                 ),
                 SizedBox(
-                  height: 300.0,
+                  height: 280.0,
                   width: 230.0,
                   child: paymentProgressBar(accountInformation.balance),
                 ),
                 SizedBox(
-                  height: 50.0,
+                  height: 20.0,
                 ),
                 Container(
                   height: 50,
                   child: payNow(),
                 ),
+                SizedBox(
+                  height: 50.0,
+                ),
+                SizedBox(
+                  height: 50.0,
+                ),
+                Container(
+                  height: 50.0,
+                  child: RaisedButton(
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    child: Text(
+                      'View Invoices',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 28,
+                      ),
+                    ),
+                    onPressed: () {},
+                  ),
+                )
               ],
             )));
   }
