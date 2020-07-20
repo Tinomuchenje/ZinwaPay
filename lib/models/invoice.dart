@@ -1,12 +1,12 @@
 class Invoice {
-  final int id;
+  final String id;
   final double amount;
   final DateTime datePaid;
   final String status;
 
   Invoice({this.id, this.amount, this.datePaid, this.status});
 
-  factory Invoice.fromJson(Map<String, dynamic> json) {
+  factory Invoice.fromJson(dynamic json) {
     return Invoice(
         id: json['invoiceNumber'],
         amount: json['amount'] != null ? double.parse(json['amount']) : 0,
