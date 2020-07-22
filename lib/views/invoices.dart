@@ -67,7 +67,7 @@ class _State extends State<Invoices> {
                     Spacer(),
                     IconButton(
                       icon: Icon(Icons.file_download),
-                      color: Colors.blue,
+                      color: Colors.blue[50],
                       onPressed: () {},
                     ),
                   ],
