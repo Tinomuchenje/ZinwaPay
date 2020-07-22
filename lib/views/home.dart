@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:zinwa_pay/models/account_data.dart';
 import 'package:zinwa_pay/models/invoice.dart';
+import 'package:zinwa_pay/networking/api.service.dart';
 import 'package:zinwa_pay/views/payment.dart';
 import 'invoices.dart';
 
@@ -59,13 +59,13 @@ class _State extends State<Dashboard> {
                 ),
                 Container(
                   height: 50.0,
-                  child: viewInvoices(),
+                  child: viewInvoices(accountInformation.meterNumber),
                 )
               ],
             )));
   }
 
-  RaisedButton viewInvoices() {
+  RaisedButton viewInvoices(String meterNumber) {
     return RaisedButton(
       textColor: Colors.white,
       color: Colors.blue,
@@ -76,19 +76,19 @@ class _State extends State<Dashboard> {
           fontSize: 28,
         ),
       ),
-      onPressed: () {
-        //API call here
-        var invoices =
-            '{"Invoices": [{"invoiceNumber": "123456", "amount":"200", "status": "Not"},{"invoiceNumber": "657892", "amount":"400", "status": "Paid"},{"invoiceNumber": "657892", "amount":"4300", "status": "Paid"},{"invoiceNumber": "907892", "amount":"700", "status": "Paid"}, {"invoiceNumber": "862892", "amount":"4300", "status": "Paid"}]}';
-        var dynamicList = json.decode(invoices)['Invoices'] as List;
-        var invoicesListToDisplay = dynamicList.map((x) => Invoice.fromJson(x)).toList();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Invoices(),
-            settings: RouteSettings(arguments: invoicesListToDisplay),
-          ),
-        );
+      onPressed: () async {
+        var response = await APIServices().retrieveInvoices(meterNumber);
+        if (response.statusCode == 200) {
+          var dynamicList = json.decode(response.body) as List;
+          var invoicesListToDisplay = dynamicList.map((x) => Invoice.fromJson(x)).toList();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Invoices(),
+              settings: RouteSettings(arguments: invoicesListToDisplay),
+            ),
+          );
+        }
       },
     );
   }

@@ -29,6 +29,8 @@ class _State extends State<Invoices> {
     final invoice = invoices[index];
     return new Container(
       child: Card(
+        color: Colors.blue[400],
+        shadowColor: Colors.blue,
         margin: EdgeInsets.all(13.0),
         elevation: 10.0,
         child: Padding(
@@ -36,19 +38,24 @@ class _State extends State<Invoices> {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 10.0),
+                padding: const EdgeInsets.only(top: 0.0, bottom: 5.0),
                 child: Row(children: <Widget>[
                   Text(
-                    invoice.id,
-                    style: new TextStyle(fontSize: 20.0),
+                    invoice.datePaid,
+                    style: new TextStyle(fontSize: 17.0, color: Colors.white),
                   ),
                   Spacer(),
+                  Icon(Icons.attach_money, color: Colors.white,),
+                  displayAmount(invoice.amount),
                 ]),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 4.0, bottom: 10.0),
                 child: Row(children: <Widget>[
-                  Text("20/07/20"),
+                  Text(
+                    invoice.id,
+                    style: new TextStyle(fontSize: 17.0, color: Colors.white),
+                  ),
                   Spacer(),
                 ]),
               ),
@@ -58,13 +65,10 @@ class _State extends State<Invoices> {
                   children: <Widget>[
                     invoiceStatus(invoice.status),
                     Spacer(),
-                    Icon(
-                      Icons.attach_money,
-                      color: Colors.green,
-                    ),
-                    Text(
-                      (invoice.amount).toString(),
-                      style: new TextStyle(fontSize: 30.0),
+                    IconButton(
+                      icon: Icon(Icons.file_download),
+                      color: Colors.blue,
+                      onPressed: () {},
                     ),
                   ],
                 ),
@@ -76,17 +80,30 @@ class _State extends State<Invoices> {
     );
   }
 
+  Text displayAmount(double amount) {
+    if (amount < 0) {
+      return Text(
+        (amount).toString(),
+        style: new TextStyle(fontSize: 24, color: Colors.red[700]),
+      );
+    }
+    return Text(
+      (amount).toString(),
+      style: new TextStyle(
+        fontSize: 24.0,
+        color: Colors.white,
+      ),
+    );
+  }
+
   RaisedButton invoiceStatus(String status) {
-    if (status == 'Paid') {
+    if (status.toUpperCase() == 'PAID') {
       return RaisedButton(
         textColor: Colors.white,
         color: Colors.green,
         child: Text(
-          'Paid',
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 15,
-          ),
+          'PAID',
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15.0, color: Colors.white),
         ),
         onPressed: () {},
       );
@@ -96,10 +113,7 @@ class _State extends State<Invoices> {
       color: Colors.red[700],
       child: Text(
         'Not Paid',
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 15,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15.0, color: Colors.white),
       ),
       onPressed: () {
         Navigator.push(
