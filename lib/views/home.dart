@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
-import 'package:zinwa_pay/models/account_data.dart';
-import 'package:zinwa_pay/models/invoice.dart';
+import 'package:zinwa_pay/models/account_information_model.dart';
+import 'package:zinwa_pay/models/invoice_model.dart';
 import 'package:zinwa_pay/networking/api.service.dart';
-import 'package:zinwa_pay/views/payment.dart';
+import 'package:zinwa_pay/views/payment_options.dart';
 import 'invoices.dart';
 
 class Dashboard extends StatefulWidget {
@@ -137,7 +137,7 @@ class _State extends State<Dashboard> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Payment()),
+            MaterialPageRoute(builder: (context) => PaymentOptionsScreen()),
           );
         });
   }
