@@ -21,6 +21,65 @@ class _State extends State<Dashboard> {
           title: Text('Home'),
           centerTitle: true,
         ),
+        endDrawer: Drawer(
+          child: ListView(children: <Widget>[
+            UserAccountsDrawerHeader(accountName: Text("meterNumber"), accountEmail: Text("tino@gmail.com")),
+            ListTile(
+              title: Text(
+                " Dashboard",
+                style: TextStyle(color: Colors.blue),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Text(
+                " Account Details",
+                style: TextStyle(color: Colors.blue),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Text(
+                " Notification History",
+                style: TextStyle(color: Colors.blue),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Text(
+                " Location Services",
+                style: TextStyle(color: Colors.blue),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Text(
+                "Contact Zinwa",
+                style: TextStyle(color: Colors.blue),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            ListTile(
+              title: Text(
+                "Reset Password",
+                style: TextStyle(color: Colors.blue),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ]),
+        ),
         body: Padding(
             padding: EdgeInsets.all(40.0),
             child: ListView(
