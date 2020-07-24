@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:zinwa_pay/models/account_data.dart';
+import 'package:zinwa_pay/models/account_information_model.dart';
 import 'package:zinwa_pay/networking/api.service.dart';
 import 'home.dart';
 import 'package:status_alert/status_alert.dart';

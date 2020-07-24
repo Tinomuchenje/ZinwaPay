@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zinwa_pay/models/invoice.dart';
+import 'package:zinwa_pay/models/invoice_model.dart';
 import 'payment.dart';
 
 class Invoices extends StatefulWidget {
