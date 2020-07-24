@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zinwa_pay/models/payment_options_model.dart';
 import 'package:zinwa_pay/views/payment.dart';
+import 'package:zinwa_pay/widgets/drawer.dart';
 
 class PaymentOptionsScreen extends StatefulWidget {
   @override
@@ -15,21 +16,9 @@ class _State extends State<PaymentOptionsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Payment Methods'),
-        centerTitle: true,
-        actions: <Widget>[
-          FlatButton(
-            textColor: Colors.white,
-            child: Text(
-              '',
-              style: TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            onPressed: () => print(''),
-          )
-        ],
+        centerTitle: true,       
       ),
+      endDrawer: AppDrawer(),
       body: ListView.builder(
         itemCount: paymentOptions.length + 2,
         itemBuilder: (BuildContext context, int index) {

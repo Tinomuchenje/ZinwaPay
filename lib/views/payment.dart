@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:zinwa_pay/widgets/drawer.dart';
 
 class Payment extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _State extends State<Payment> {
         title: Text('Make Payment'),
         centerTitle: true,
       ),
+      endDrawer: AppDrawer(),
       body: WebView(
         initialUrl: "https://clicka-utenge.co.zw/zinwa/main/app/makepayment.php",
         javascriptMode: JavascriptMode.unrestricted,
