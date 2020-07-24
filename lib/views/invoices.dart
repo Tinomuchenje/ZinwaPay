@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zinwa_pay/models/invoice_model.dart';
+import 'package:zinwa_pay/widgets/drawer.dart';
 import 'payment.dart';
 
 class Invoices extends StatefulWidget {
@@ -17,6 +18,7 @@ class _State extends State<Invoices> {
           title: Text('Invoices'),
           centerTitle: true,
         ),
+        endDrawer: AppDrawer(),
         body: Container(
           child: new ListView.builder(
             itemCount: invoices.length,

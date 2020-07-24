@@ -5,6 +5,7 @@ import 'package:zinwa_pay/models/account_information_model.dart';
 import 'package:zinwa_pay/models/invoice_model.dart';
 import 'package:zinwa_pay/networking/api.service.dart';
 import 'package:zinwa_pay/views/payment_options.dart';
+import 'package:zinwa_pay/widgets/drawer.dart';
 import 'invoices.dart';
 
 class Dashboard extends StatefulWidget {
@@ -21,6 +22,7 @@ class _State extends State<Dashboard> {
           title: Text('Home'),
           centerTitle: true,
         ),
+        endDrawer: AppDrawer(),
         body: Padding(
             padding: EdgeInsets.all(40.0),
             child: ListView(
