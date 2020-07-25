@@ -86,10 +86,12 @@ packages:
   flutter_credit_card:
     dependency: "direct main"
     description:
-      name: flutter_credit_card
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1"
+      path: "."
+      ref: master
+      resolved-ref: "2bb84848d6a25bac62f4b49f2a6e6bf05ff5217f"
+      url: "https://github.com/SimformSolutionsPvtLtd/flutter_credit_card.git"
+    source: git
+    version: "0.1.4"
   flutter_test:
     dependency: "direct dev"
     description: flutter
