@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zinwa_pay/models/payment_options_model.dart';
-import 'package:zinwa_pay/views/payment.dart';
+import 'package:zinwa_pay/views/mobile_payment.dart';
 import 'package:zinwa_pay/widgets/drawer.dart';
 
 class PaymentOptionsScreen extends StatefulWidget {
