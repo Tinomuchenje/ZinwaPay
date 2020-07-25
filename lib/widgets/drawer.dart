@@ -59,19 +59,20 @@ class AppDrawer extends StatelessWidget {
         Container(
           color: Colors.blue,
           height: 60,
-            child: ListTile(
-          leading: Icon(
-            Icons.exit_to_app,
-            size: 35.0,
-            color: Colors.red,
+          child: ListTile(
+            leading: Icon(
+              Icons.exit_to_app,
+              size: 35.0,
+              color: Colors.red,
+            ),
+            title: Text('Logout',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                )),
+            onTap: () => Navigator.of(context).pop(),
           ),
-          title: Text('Logout',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.white,
-              )),
-          onTap: () => Navigator.of(context).pop(),
-        )),
+        ),
       ]),
     );
   }

@@ -1,16 +1,20 @@
 import 'package:flutter/cupertino.dart';
 
-class PaymentOptions{
+class PaymentOptions {
   Image image;
   String title;
+  PaymentOptionsEnum paymentMethod;
 
-  PaymentOptions({this.image, this.title});
+  PaymentOptions({this.image, this.title, this.paymentMethod});
 }
+
+enum PaymentOptionsEnum { Ecocash, OneMone, Telecash, Nostro, MasterOrVisa }
 
 final paymentOptions = [
   PaymentOptions(
     image: Image.asset('assets/ecocash.jpg'),
     title: 'Ecocash',
+    paymentMethod: PaymentOptionsEnum.Ecocash
   ),
   PaymentOptions(
     image: Image.asset('assets/onemoney.png'),
@@ -31,5 +35,6 @@ final paymentOptions = [
   PaymentOptions(
     image: Image.asset('assets/visamaster.png'),
     title: 'Visa/MasterCard',
+    paymentMethod: PaymentOptionsEnum.MasterOrVisa
   ),
 ];

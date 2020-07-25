@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zinwa_pay/models/payment_options_model.dart';
-import 'package:zinwa_pay/views/payment.dart';
+import 'package:zinwa_pay/views/mobile_payment.dart';
 import 'package:zinwa_pay/widgets/drawer.dart';
+
+import 'credit_card_payment.dart';
 
 class PaymentOptionsScreen extends StatefulWidget {
   @override
@@ -85,13 +87,23 @@ class _State extends State<PaymentOptionsScreen> {
         setState(() {
           _selectedOption = index - 1;
         });
-        if (paymentOptions[index - 1].title == "Ecocash") {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Payment()),
-          );
-        }
+        navigateToPaymentMethod(paymentOptions[index - 1].paymentMethod, context);
       },
     );
+  }
+
+  void navigateToPaymentMethod(PaymentOptionsEnum option, BuildContext context) {
+    if (option == PaymentOptionsEnum.Ecocash) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Payment()),
+      );
+    }
+     if (option == PaymentOptionsEnum.MasterOrVisa) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CreditCardPayment()),
+      );
+    }
   }
 }
