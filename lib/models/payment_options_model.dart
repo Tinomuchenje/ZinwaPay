@@ -8,7 +8,7 @@ class PaymentOptions {
   PaymentOptions({this.image, this.title, this.paymentMethod});
 }
 
-enum PaymentOptionsEnum { Ecocash, OneMone, Telecash, Nostro, MasterOrVisa }
+enum PaymentOptionsEnum { Ecocash, OneMone, Telecash, Nostro, MasterOrVisa, Bank }
 
 final paymentOptions = [
   PaymentOptions(
@@ -27,6 +27,7 @@ final paymentOptions = [
   PaymentOptions(
     image: Image.asset('assets/bank.png'),
     title: 'Bank EFT',
+    paymentMethod: PaymentOptionsEnum.Bank
   ),
   PaymentOptions(
     image: Image.asset('assets/bank.png'),

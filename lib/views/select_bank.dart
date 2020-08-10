@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:zinwa_pay/models/payment_options_model.dart';
-import 'package:zinwa_pay/views/mobile_payment.dart';
-import 'package:zinwa_pay/views/select_bank.dart';
+import 'package:zinwa_pay/models/bank_options_model.dart';
 import 'package:zinwa_pay/widgets/drawer.dart';
 
-import 'credit_card_payment.dart';
+import 'bank_payment.dart';
+import 'mobile_payment.dart';
 
-class PaymentOptionsScreen extends StatefulWidget {
+class SelectBankScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => _State();
-}
-
-class _State extends State<PaymentOptionsScreen> {
-  int _selectedOption = 0;
-
+  }
+  
+  class _State extends State<SelectBankScreen> {
+    int _selectedOption = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Methods'),
+        title: Text('Select A Bank'),
         centerTitle: true,       
       ),
       endDrawer: AppDrawer(),
       body: ListView.builder(
-        itemCount: paymentOptions.length + 2,
+        itemCount: banks.length + 2,
         itemBuilder: (BuildContext context, int index) {
           if (index == 0) {
             return SizedBox(height: 15.0);
-          } else if (index == paymentOptions.length + 1) {
+          } else if (index == banks.length + 1) {
             return SizedBox(height: 100.0);
           }
           return Container(
@@ -76,10 +74,11 @@ class _State extends State<PaymentOptionsScreen> {
 
   ListTile buildListTile(int index, BuildContext context) {
     return ListTile(
-      leading: paymentOptions[index - 1].image,
       title: Text(
-        paymentOptions[index - 1].title,
+        banks[index - 1].name,
         style: TextStyle(
+          fontSize: 17.0,
+          fontWeight: FontWeight.bold,
           color: _selectedOption == index - 1 ? Colors.blue : Colors.grey[600],
         ),
       ),
@@ -88,29 +87,11 @@ class _State extends State<PaymentOptionsScreen> {
         setState(() {
           _selectedOption = index - 1;
         });
-        navigateToPaymentMethod(paymentOptions[index - 1].paymentMethod, context);
+        Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => BankPaymentScreen()),
+      );
       },
     );
-  }
-
-  void navigateToPaymentMethod(PaymentOptionsEnum option, BuildContext context) {
-    if (option == PaymentOptionsEnum.Ecocash) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => Payment()),
-      );
-    }
-    if (option == PaymentOptionsEnum.Bank) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => SelectBankScreen()),
-      );
-    }
-     if (option == PaymentOptionsEnum.MasterOrVisa) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CreditCardPayment()),
-      );
-    }
   }
 }
