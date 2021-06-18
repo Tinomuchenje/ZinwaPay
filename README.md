@@ -1,13 +1,18 @@
-# zinwa_pay
 
-An application for zinwa.
+# Zinwa Pay
 
-## Getting Started
+This is a mobile application for managing Zinwa payments. 
+From viewing previous invoices to making bill payments to
+the water authority. 
 
-## Installations
 
-## Naming Convention
+## Demo
 
-## Project Architecture
+Insert gif or link to demo
 
-##Ref 
+  
+## Screenshots
+
+![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
+  
