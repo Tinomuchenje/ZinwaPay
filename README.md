@@ -1,6 +1,6 @@
 # Zinwa Pay
 
-This is a mobile application for managing Zinwa payments. 
+This is a mobile application for managing Zinwa payments proof of concept. 
 From viewing previous invoices to making bill payments to
 the water authority. 
 
