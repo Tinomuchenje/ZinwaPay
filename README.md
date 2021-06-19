@@ -1,4 +1,3 @@
-
 # Zinwa Pay
 
 This is a mobile application for managing Zinwa payments. 
@@ -6,11 +5,10 @@ From viewing previous invoices to making bill payments to
 the water authority. 
 
 
-## Demo Link
+## Demo
 
-https://drive.google.com/drive/u/0/folders/1KC248reGZBksfAhNVjnwQp1JWtXAhSiw
+https://user-images.githubusercontent.com/31763088/122625985-3e1b6d00-d0a8-11eb-8e78-3b95d1de7beb.mp4
    
-
 ## Screenshots
 
 #### Splash Screen
