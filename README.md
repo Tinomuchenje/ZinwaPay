@@ -4,6 +4,12 @@ This is a mobile application for managing Zinwa payments.
 From viewing previous invoices to making bill payments to
 the water authority. 
 
+## Objectives for user
+- [x]  To log into their account 
+- [x]  To view current and past financials
+- [x]  To make payments with their chosen platform
+- To receive notifications for the account
+- To access Zinwa contact details near them
 
 ## Demo
 
